@@ -12,8 +12,9 @@ import { Note } from './types'
 import './App.css'
 function App() {
   const { user, loading: authLoading, signIn, signUp, signInWithGoogle, signOut } = useAuth()
-  const { notes, loading: notesLoading, createNote, updateNote, deleteNote } = useNotes(user)
-  
+  const { notes, createNote, updateNote, deleteNote } = useNotes(user)
+
+
   const [showAuth, setShowAuth] = useState(false)
   const [showCreateNote, setShowCreateNote] = useState(false)
   const [selectedNote, setSelectedNote] = useState<Note | null>(null)

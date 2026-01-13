@@ -1,4 +1,4 @@
-import { Save, X } from 'lucide-react'
+import { Save } from 'lucide-react'
 import { useState } from 'react'
 import { Note } from '../../types'
 
