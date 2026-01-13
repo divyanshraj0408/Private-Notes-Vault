@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# 🔐 Private Notes Vault Demo - [[Link](https://notesvaultprivate.netlify.app/#)]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal, private notes web application where each user can securely create and manage their own notes.
+The app is intentionally simple, focused, and distraction-free — designed as a personal scratchpad, not a productivity tool.
 
-Currently, two official plugins are available:
+# ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔑 Authentication
 
-## React Compiler
+Email & Password login
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Google OAuth
 
-## Expanding the ESLint configuration
+Powered by Supabase Authentication
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📝 Private Notes
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Create notes
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+View a list of your notes
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+View a single note
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Delete notes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Notes are private by default and strictly tied to the authenticated user
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+editing notes also implemented
+
+searching for notes
+
+## 🔒 Strong Data Ownership
+
+Row Level Security (RLS) enforced at the database level
+
+Users can only access their own notes — even at the query level
+
+## 🎨 Minimal UI
+
+Clean, distraction-free interface
+
+Focused on writing and reading
+
+No unnecessary features or visual noise
+
+# 🛠 Tech Stack
+
+## Frontend
+
+React (Vite)
+
+TypeScript
+
+Tailwind CSS
+
+## Backend / Database / Auth
+
+Supabase
+
+Authentication (Email & Google OAuth)
+
+PostgreSQL Database
+
+Row Level Security (RLS)
+
+## Deployment
+
+Netlify
+
+# 🗄 Database Schema
+### `notes` table
+
+| Column     | Type      | Description                         |
+|------------|-----------|-------------------------------------|
+| id         | UUID      | Primary key                          |
+| user_id    | UUID      | References authenticated user       |
+| title      | Text      | Note title                           |
+| content    | Text      | Note content                         |
+| created_at | Timestamp | Auto-generated timestamp            |
+
+# 📄 License
+
+MIT License
